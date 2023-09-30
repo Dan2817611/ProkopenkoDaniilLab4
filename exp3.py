@@ -44,8 +44,8 @@ def generate_employee_statistics():
                 age_categories[age_category][gender_category] += 1
 
             print("\nРозподіл за статтю:")
-            print(f"Чоловіки: {gender_count['male']} співробітників")
-            print(f"Жінки: {gender_count['female']} співробітників")
+            print(f"Чоловіки: {gender_count['male']}")
+            print(f"Жінки: {gender_count['female']}")
 
             show_gender_chart(gender_count)  # Перша діаграма
             show_age_distribution_chart(age_categories)  # Друга діаграма
@@ -53,7 +53,7 @@ def generate_employee_statistics():
 
             print("\nРозподіл за віком:")
             for category, counts in age_categories.items():
-                print(f"{category}: {counts['male'] + counts['female']} співробітників")
+                print(f"{category}: {counts['male'] + counts['female']}")
 
             print("\nРозподіл за статтю та віком:")
             for category, counts in age_categories.items():
