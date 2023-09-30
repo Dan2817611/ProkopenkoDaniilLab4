@@ -60,7 +60,6 @@ def generate_employee_statistics():
                 print(f"{category}: Чоловіки - {counts['male']}, Жінки - {counts['female']}")
 
             print("Ok")
-
     except FileNotFoundError:
         print("Повідомлення про відсутність, або проблеми при відкритті файлу CSV.")
     except Exception as e:
