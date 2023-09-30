@@ -2,35 +2,35 @@ import csv
 import openpyxl
 from datetime import datetime
 
-def calculate_employer_age(birthdate):
+def calculate_employer_age(DateBirth):
     today = datetime.today()
-    employer_age = today.year - birthdate.year - ((today.month, today.day) < (birthdate.month, birthdate.day))
+    employer_age = today.year - DateBirth.year - ((today.month, today.day) < (DateBirth.month, DateBirth.day))
     return employer_age
 
 try:
     with open('file_exp1.csv', mode='r', newline='', encoding='utf-8') as csv_file:
         csv_reader = csv.DictReader(csv_file)
 
-        wb = openpyxl.Workbook()
+        workbook = openpyxl.Workbook()
 
-        if 'Sheet' in wb.sheetnames:
-            sheet = wb['Sheet']
-            wb.remove(sheet)
+        if 'Sheet' in workbook.sheetnames:
+            sheet = workbook['Sheet']
+            workbook.remove(sheet)
 
-        ws_all = wb.create_sheet(title="all")
-        ws_all.append(["№", "Прізвище", "Ім’я", "По батькові", "Дата народження", "Вік"])
+        worksheet_all = workbook.create_sheet(title="all")
+        worksheet_all.append(["№", "Прізвище", "Ім’я", "По батькові", "Дата народження", "Вік"])
 
-        ws_younger_18 = wb.create_sheet(title="younger_18")
-        ws_younger_18.append(["№", "Прізвище", "Ім’я", "По батькові", "Дата народження", "Вік"])
+        worksheet_younger_18 = workbook.create_sheet(title="younger_18")
+        worksheet_younger_18.append(["№", "Прізвище", "Ім’я", "По батькові", "Дата народження", "Вік"])
 
-        ws_18_45 = wb.create_sheet(title="18-45")
-        ws_18_45.append(["№", "Прізвище", "Ім’я", "По батькові", "Дата народження", "Вік"])
+        worksheet_18_45 = workbook.create_sheet(title="18-45")
+        worksheet_18_45.append(["№", "Прізвище", "Ім’я", "По батькові", "Дата народження", "Вік"])
 
-        ws_45_70 = wb.create_sheet(title="45-70")
-        ws_45_70.append(["№", "Прізвище", "Ім’я", "По батькові", "Дата народження", "Вік"])
+        worksheet_45_70 = workbook.create_sheet(title="45-70")
+        worksheet_45_70.append(["№", "Прізвище", "Ім’я", "По батькові", "Дата народження", "Вік"])
 
-        ws_older_70 = wb.create_sheet(title="older_70")
-        ws_older_70.append(["№", "Прізвище", "Ім’я", "По батькові", "Дата народження", "Вік"])
+        worksheet_older_70 = workbook.create_sheet(title="older_70")
+        worksheet_older_70.append(["№", "Прізвище", "Ім’я", "По батькові", "Дата народження", "Вік"])
 
         count_all = 0
         count_younger_18 = 0
@@ -60,12 +60,12 @@ try:
                 row_number = count_older_70
 
             count_all += 1
-            ws_all.append([count_all, row["Прізвище"], row["Ім’я"], row["По батькові"], row["Дата народження"], age])
+            worksheet_all.append([count_all, row["Прізвище"], row["Ім’я"], row["По батькові"], row["Дата народження"], age])
 
-            ws_category = wb[category]
-            ws_category.append([row_number, row["Прізвище"], row["Ім’я"], row["По батькові"], row["Дата народження"], age])
+            worksheet_category = workbook[category]
+            worksheet_category.append([row_number, row["Прізвище"], row["Ім’я"], row["По батькові"], row["Дата народження"], age])
 
-        wb.save("file_exp2.xlsx")
+        workbook.save("file_exp2.xlsx")
         print("Файл file_exp2.xlsx створено")
 except FileNotFoundError:
     print("Повідомлення про відсутність, або проблеми при відкритті файлу CSV.")
