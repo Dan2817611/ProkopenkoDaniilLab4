@@ -18,7 +18,7 @@ try:
             workbook.remove(sheet)
 
         worksheet_all = workbook.create_sheet(title="all")
-        worksheet_all.append(["№", "Прізвище", "Ім’я", "По батькові", "Дата народження", "Вік"])
+        worksheet_all.append(["Прізвище", "Ім’я", "По батькові", "Дата народження", "Стать", "Посада", "Місто проживання", "Адреса проживання", "Телефон", "Email"])
 
         worksheet_younger_18 = workbook.create_sheet(title="younger_18")
         worksheet_younger_18.append(["№", "Прізвище", "Ім’я", "По батькові", "Дата народження", "Вік"])
@@ -60,7 +60,7 @@ try:
                 row_number = count_older_70
 
             count_all += 1
-            worksheet_all.append([count_all, row["Прізвище"], row["Ім’я"], row["По батькові"], row["Дата народження"], age])
+            worksheet_all.append([row["Прізвище"], row["Ім’я"], row["По батькові"], row["Дата народження"], row["Стать"], row["Посада"], row["Місто проживання"], row["Адреса проживання"], row["Телефон"], row["Email"]])
 
             worksheet_category = workbook[category]
             worksheet_category.append([row_number, row["Прізвище"], row["Ім’я"], row["По батькові"], row["Дата народження"], age])
