@@ -43,7 +43,7 @@ def generate_employee_statistics():
 
                 age_categories[age_category][gender_category] += 1
 
-            print("\nРозподіл за статтю1:")
+            print("\nРозподіл за статтю:")
             print(f"Чоловіки: {gender_count['male']} співробітників")
             print(f"Жінки: {gender_count['female']} співробітників")
 
